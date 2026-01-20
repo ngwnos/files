@@ -42,10 +42,12 @@ document.body.appendChild(stats.dom);
 const qualityButtons = Array.from(
   document.querySelectorAll<HTMLButtonElement>('#quality-controls [data-quality]')
 );
+const keyboardButton = document.querySelector<HTMLButtonElement>('#keyboard-toggle');
 
 (async () => {
   const renderer = new WebGPURenderer({ canvas, antialias: true });
   let activeQuality: QualityPreset = 'medium';
+  let keyboardEnabled = false;
   const applyQualityPreset = (preset: QualityPreset) => {
     const settings = QUALITY_PRESETS[preset];
     activeQuality = preset;
@@ -61,13 +63,22 @@ const qualityButtons = Array.from(
       button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
   };
+  const setKeyboardEnabled = (enabled: boolean) => {
+    keyboardEnabled = enabled;
+    scene.updateParameters({ keyboardEnabled: enabled });
+    if (keyboardButton) {
+      keyboardButton.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+      keyboardButton.textContent = enabled ? 'Keyboard On' : 'Keyboard Off';
+    }
+  };
 
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, QUALITY_PRESETS[activeQuality].maxPixelRatio));
   await renderer.init();
 
   await scene.init(canvas, renderer);
-  scene.updateParameters({ displayMode: 'shader', keyboardEnabled: false });
+  scene.updateParameters({ displayMode: 'shader' });
   applyQualityPreset(activeQuality);
+  setKeyboardEnabled(false);
 
   const resize = () => {
     const width = window.innerWidth;
@@ -87,6 +98,11 @@ const qualityButtons = Array.from(
       applyQualityPreset(quality);
     });
   });
+  if (keyboardButton) {
+    keyboardButton.addEventListener('click', () => {
+      setKeyboardEnabled(!keyboardEnabled);
+    });
+  }
   window.addEventListener('keydown', (event) => {
     if (event.repeat) {
       return;

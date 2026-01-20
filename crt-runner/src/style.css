@@ -59,7 +59,8 @@ body {
   gap: 6px;
 }
 
-.quality-buttons button {
+.quality-buttons button,
+.quality-toggle {
   padding: 6px 8px;
   border-radius: 8px;
   border: 1px solid rgba(90, 150, 120, 0.45);
@@ -73,25 +74,33 @@ body {
     box-shadow 120ms ease, color 120ms ease;
 }
 
-.quality-buttons button:hover {
+.quality-buttons button:hover,
+.quality-toggle:hover {
   border-color: rgba(120, 200, 160, 0.8);
   box-shadow: 0 0 0 1px rgba(80, 160, 120, 0.2);
 }
 
-.quality-buttons button:active {
+.quality-buttons button:active,
+.quality-toggle:active {
   transform: translateY(1px);
 }
 
-.quality-buttons button[aria-pressed="true"] {
+.quality-buttons button[aria-pressed="true"],
+.quality-toggle[aria-pressed="true"] {
   background: linear-gradient(135deg, rgba(51, 255, 102, 0.35), rgba(30, 120, 70, 0.85));
   border-color: var(--ui-accent);
   color: #06130b;
   box-shadow: 0 0 12px rgba(51, 255, 102, 0.35);
 }
 
-.quality-buttons button:focus-visible {
+.quality-buttons button:focus-visible,
+.quality-toggle:focus-visible {
   outline: 2px solid rgba(51, 255, 102, 0.8);
   outline-offset: 2px;
+}
+
+.quality-toggle {
+  width: 100%;
 }
 
 @media (max-width: 600px) {
