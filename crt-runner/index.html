@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>crt-runner</title>
+  </head>
+  <body>
+    <canvas id="app"></canvas>
+    <div id="quality-controls" role="group" aria-label="Quality">
+      <div class="quality-label">Quality</div>
+      <div class="quality-buttons">
+        <button type="button" data-quality="low" aria-pressed="false">Low</button>
+        <button type="button" data-quality="medium" aria-pressed="false">Mid</button>
+        <button type="button" data-quality="high" aria-pressed="false">High</button>
+      </div>
+      <button type="button" id="keyboard-toggle" class="quality-toggle" aria-pressed="false">
+        Keyboard Off
+      </button>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
