@@ -1,0 +1,19 @@
+{
+  "name": "crt-runner",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:gh-pages": "vite build --outDir ../docs --emptyOutDir",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4"
+  },
+  "dependencies": {
+    "three": "^0.182.0"
+  }
+}

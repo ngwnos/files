@@ -1,0 +1,104 @@
+:root {
+  background-color: #000000;
+  --ui-bg: rgba(6, 12, 10, 0.72);
+  --ui-border: rgba(90, 150, 120, 0.5);
+  --ui-text: #d7f6e7;
+  --ui-muted: rgba(215, 246, 231, 0.6);
+  --ui-accent: #33ff66;
+  --ui-shadow: rgba(4, 18, 12, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000000;
+}
+
+#app {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+#quality-controls {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 5;
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  min-width: 176px;
+  border-radius: 12px;
+  border: 1px solid var(--ui-border);
+  background: var(--ui-bg);
+  color: var(--ui-text);
+  font-family: "IBM Plex Mono", "Cascadia Mono", "SFMono-Regular", monospace;
+  box-shadow: 0 8px 18px var(--ui-shadow), inset 0 0 0 1px rgba(100, 180, 130, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+.quality-label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ui-muted);
+}
+
+.quality-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.quality-buttons button {
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(90, 150, 120, 0.45);
+  background: rgba(8, 14, 12, 0.95);
+  color: var(--ui-text);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 120ms ease, border-color 120ms ease, background 120ms ease,
+    box-shadow 120ms ease, color 120ms ease;
+}
+
+.quality-buttons button:hover {
+  border-color: rgba(120, 200, 160, 0.8);
+  box-shadow: 0 0 0 1px rgba(80, 160, 120, 0.2);
+}
+
+.quality-buttons button:active {
+  transform: translateY(1px);
+}
+
+.quality-buttons button[aria-pressed="true"] {
+  background: linear-gradient(135deg, rgba(51, 255, 102, 0.35), rgba(30, 120, 70, 0.85));
+  border-color: var(--ui-accent);
+  color: #06130b;
+  box-shadow: 0 0 12px rgba(51, 255, 102, 0.35);
+}
+
+.quality-buttons button:focus-visible {
+  outline: 2px solid rgba(51, 255, 102, 0.8);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  #quality-controls {
+    top: auto;
+    bottom: 12px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
